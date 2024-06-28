@@ -4,6 +4,7 @@
         point_filter_num: 3
         max_iteration: 3
         filter_size_surf: 0.5
+        #filter_size_map: 0.5
         filter_size_map: 0.5
         cube_side_length: 1000.0
         runtime_pos_log_enable: false
@@ -31,10 +32,15 @@
             fov_degree:    360.0
             det_range:     100.0
             extrinsic_est_en:  true      # true: enable the online estimation of IMU-LiDAR extrinsic
-            extrinsic_T: [ 0.336, 0., 0.167 ] # [ -0.011, -0.02329, 0.04412 ]
-            extrinsic_R: [ 0.642787, 0., 0.766045,
+            #extrinsic_T: [ 0.336, 0., 0.167 ] # [ -0.011, -0.02329, 0.04412 ]
+            #extrinsic_R: [ 0.642787, 0., 0.766045,
+            #                0., 1., 0.,
+            #                -0.766045, 0., 0.642787]
+                            
+            extrinsic_T: [ -0.011, -0.02329, 0.04412 ] # [ -0.011, -0.02329, 0.04412 ]
+            extrinsic_R: [ 1., 0., 0.,
                             0., 1., 0.,
-                            -0.766045, 0., 0.642787]
+                            0., 0., 1.]
 
         publish:
             path_en: true                # true: publish Path
@@ -42,7 +48,7 @@
             map_en: true                 # true: publish Map cloud
             scan_publish_en:  true       # false: close all the point cloud output
             dense_publish_en: true      # false: low down the points number in a global-frame point clouds scan.
-            scan_bodyframe_pub_en: true  # true: output the point cloud scans in IMU-body-frame
+            scan_bodyframe_pub_en: false  # true: output the point cloud scans in IMU-body-frame
 
         pcd_save:
             pcd_save_en: true
