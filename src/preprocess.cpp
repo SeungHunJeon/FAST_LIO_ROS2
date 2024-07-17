@@ -168,7 +168,8 @@ void Preprocess::avia_handler(const raisin_lidar_helper::msg::CustomMsg::UniqueP
     for (uint i = 1; i < plsize; i++)
     {
       if ((msg->points[i].line < N_SCANS) &&
-          ((msg->points[i].tag & 0x30) == 0x10 || (msg->points[i].tag & 0x30) == 0x00))
+          ((msg->points[i].tag & 0x30) == 0x10 || (msg->points[i].tag & 0x30) == 0x00) &&
+          (msg->points[i].x * msg->points[i].x + msg->points[i].y * msg->points[i].y + msg->points[i].z * msg->points[i].z > (blind * blind)))
       {
         valid_num++;
         if (valid_num % point_filter_num == 0)
